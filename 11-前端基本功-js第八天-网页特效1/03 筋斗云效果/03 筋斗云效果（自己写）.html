@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>筋斗云（自己写）</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{
+			background-color: #898686;
+		}
+		#_container{
+			width: 800px;
+			height: 42px;
+			margin: 50px auto;
+			background: url(images/rss.png) no-repeat right center white;
+			position: relative;
+		}
+		ul{
+			list-style: none;
+			margin-left: 10px;
+			position: absolute;
+			
+		}
+		ul li{
+			float: left;
+			width: 83px;
+			height: 42px;
+			line-height: 42px;
+			cursor: pointer;
+		}
+		span{
+			width: 83px;
+			height: 42px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-image: url(images/cloud.gif);
+		}
+	</style>
+</head>
+<body>
+	<div id="_container">
+		<span id="_cloud"></span>
+		<ul id="_ul">
+			<li>首页新闻</li>
+			<li>师资力量</li>
+			<li>活动策划</li>
+			<li>企业文化</li>
+			<li>招聘信息</li>
+			<li>公司简介</li>
+			<li>上海校区</li>
+			<li>广州校区</li>
+		</ul>
+	</div>
+	<script>
+		var lis = document.getElementById("_ul").children;
+		var cloud = document.getElementById("_cloud");
+		var dist = 0, target = 0;	//dist暂时保存left的值
+		for(var i = 0; i < lis.length; i++){
+			lis[i].onmouseover = function(){
+				target = this.offsetLeft;
+			}
+			lis[i].onmouseout = function(){
+				target = dist;
+			}
+			lis[i].onclick = function(){
+				dist = this.offsetLeft;
+			}
+		}
+		
+		var timer = null;
+		var leader = 0;
+		timer = setInterval(function(){
+			leader += (target - leader)/10;
+			cloud.style.left = leader + "px";
+		},20);
+	</script>
+</body>
+</html>

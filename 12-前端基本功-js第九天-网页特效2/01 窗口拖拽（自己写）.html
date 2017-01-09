@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>窗口拖拽（自己写）</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#_container{
+			width: 400px;
+			height: 300px;
+			border: 5px solid #eee;
+			box-shadow: 5px 5px 10px #656565;
+/*			margin: 50px auto;*/
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		#_dragBar{
+			width: 100%;
+			height: 20px;
+			background-color: #aa66ef;
+			cursor: move;
+		}
+		#_dragBar span{
+			float: right;
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var container = document.getElementById("_container");
+			var dragBar = document.getElementById("_dragBar");
+			//动态地把窗口定位到中间位置
+			container.style.marginTop = -container.offsetHeight/2 + "px";
+			container.style.marginLeft = -container.offsetWidth/2 + "px";
+			
+			move(dragBar,container);	//执行move函数
+			function move(drager,target){	//点击拖动dragBar, 整个container都移动
+				drager.onmousedown = function(event){
+					var event = event || window.Event;
+					var xInBox = event.clientX - container.offsetLeft;	//获取鼠标在盒子中的 X 坐标
+					var yInBox = event.clientY - container.offsetTop;	//获取 Y 坐标
+//					alert(xInBox + "   " + yInBox);
+					document.onmousemove = function(event){
+						var event = event || window.Event;
+						
+						container.style.left = (event.clientX - xInBox) - parseInt(window.getComputedStyle(container,null)['margin-left']) + "px";
+						container.style.top = (event.clientY - yInBox) - parseInt(window.getComputedStyle(container,null)['margin-top']) + "px";
+						
+						window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();	//阻止文字被选中
+					}
+				}
+				drager.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			}
+		}
+		
+		//获取css定义的属性(结果为字符串，包含 px 等)：
+//		window.getComputedStyle(e,null)['width'] 或 window.getComputedStyle(e,null).getPropertyValue('width')
+	</script>
+</head>
+<body>
+	<div id="_container">
+		<div id="_dragBar">
+			注册信息（可以拖拽）
+			<span>关闭</span>
+		</div>
+<!--		<div></div>-->
+	</div>
+</body>
+</html>

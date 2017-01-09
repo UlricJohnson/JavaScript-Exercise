@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5秒钟之后自动关闭广告（自己写）</title>
+</head>
+<body>
+	<img id="_img1" src="1.gif" alt="" style="float:left">
+	<img id="_img2" src="2.gif" alt="" style="float:right">
+	<p id="_txt">广告将在5秒后关闭</p>
+</body>
+</html>
+<script>
+	var img1 = document.getElementById("_img1");
+	var img2 = document.getElementById("_img2");
+	var txt = document.getElementById("_txt");
+	var intervals = 1000;	//间隔时间
+	var count = 5;
+	
+	//使用函数名
+//	setTimeout(closeAd,intervals);
+//	function closeAd(){
+//		if(count <= 1){
+//			img1.style.display = "none";
+//			img2.style.display = "none";
+//			txt.innerHTML = "广告消失啦";
+//		}else{
+//			count--;
+//			txt.innerHTML = "广告将在" + count + "秒后关闭";
+//			setTimeout(closeAd,intervals);
+//		}
+//	}
+	
+	//不使用函数名
+	setTimeout(function(){
+		if(count <= 1){
+			img1.style.display = "none";
+			img2.style.display = "none";
+			txt.innerHTML = "广告消失啦";
+		}else{
+			count--;
+			txt.innerHTML = "广告将在" + count + "秒后关闭";
+			setTimeout(arguments.callee,intervals);	//arguments.callee 表示函数自身
+		}
+	},intervals);
+</script>

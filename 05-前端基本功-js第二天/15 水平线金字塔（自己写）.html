@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水平线金字塔（自己写）</title>
+	<style>
+		body{
+			padding-top: 20px;
+		}
+		hr{
+			margin: 15px auto;
+		}
+	</style>
+</head>
+<body>
+
+	
+
+	<script>
+		window.onload = function(){
+			
+			for(var i = 1; i <= 100; i++){
+				document.write("<hr width=" + i + "%>");
+				
+//				document.write("<hr>");
+//				var hr = document.getElementsByTagName("hr");
+//				hr[i-1].style.width = i + "%";
+					
+			}
+		}
+	</script>
+</body>
+</html>

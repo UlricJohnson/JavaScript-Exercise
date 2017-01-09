@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击倒计时（自己写）</title>
+</head>
+<body>
+	<button>发送短信</button>
+</body>
+</html>
+<script>
+	var btn = document.getElementsByTagName("button")[0];
+	var count = 5;
+	var timer = null;
+	btn.onclick = function(){
+		clearInterval(timer);	//每次执行操作前要清除定时器，否则会与上次的定时器叠加，越来越快
+		this.disabled = true;
+		var that = this;
+		timer = setInterval(function(){
+			if(count <= 0){
+				btn.innerHTML = "重新发送短信";
+//				this.disabled = false;	//此处用this表示window
+				that.disabled = false;
+			}else{
+				btn.innerHTML = "剩余" + count + "秒";
+				count--;
+			}
+		}, 1000);
+		count = 5;
+		clearInterval(timer);
+	}
+</script>

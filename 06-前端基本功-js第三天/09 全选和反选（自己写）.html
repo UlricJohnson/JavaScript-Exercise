@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选和反选</title>
+</head>
+<body>
+	<div id="container">
+			<button id="_selectAll">全选</button>
+			<button id="_unselectAll">全不选</button>		
+			<button id="_antiElection">反选</button>
+<!--
+		<input type="button" value="全选" id="_selectAll">
+		<input type="button" value="反选" id="_antiElection">
+-->
+		<div>
+			选项1
+			<input type="checkbox">
+		</div>
+		<div>
+			选项2
+			<input type="checkbox">
+		</div>
+		<div>
+			选项3
+			<input type="checkbox">
+		</div>
+		<div>
+			选项4
+			<input type="checkbox">
+		</div>
+		<div>
+			选项5
+			<input type="checkbox">
+		</div>
+	</div>
+	
+	<script>
+		var selectAll = document.getElementById("_selectAll");
+		var unselectAll = document.getElementById("_unselectAll");
+		var antiElection = document.getElementById("_antiElection");
+		var checkBoxes = document.getElementsByTagName("input");
+		
+		selectAll.onclick = function(){
+			for(var i = 0, l = checkBoxes.length; i < l; i++){
+				checkBoxes[i].checked = true;
+			}
+		}
+		unselectAll.onclick = function(){
+			for(var i = 0, l = checkBoxes.length; i < l; i++){
+				checkBoxes[i].checked = false;
+			}
+		}
+		antiElection.onclick = function(){
+			for(var i = 0, l = checkBoxes.length; i < l; i++){
+//				if(checkBoxes[i].checked == false){
+//					checkBoxes[i].checked = true;
+//				}else if(checkBoxes[i].checked == true){
+//					checkBoxes[i].checked = false;
+//				}
+				checkBoxes[i].checked == true? checkBoxes[i].checked =false : checkBoxes[i].checked = true;	// 使用三目运算符
+			}
+		}
+	</script>
+	
+</body>
+</html>

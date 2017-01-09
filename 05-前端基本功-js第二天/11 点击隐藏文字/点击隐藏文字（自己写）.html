@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击隐藏文字（自己写）</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			border: 0 none;
+		}
+		#_container{
+			background-color: aqua;
+			width: 258px;
+			height: 40px;
+			margin: 50px auto;
+			
+		}
+		#_container input{
+			width: 206px;
+			height: 40px;
+			padding-left: 10px;
+			background: url(images/left.jpg) no-repeat;
+			color: rgb(128,128,128);
+			float: left;
+			outline-style: none;	/*取消获得焦点时的蓝色外边框*/
+		}
+		#_container button{
+			width: 42px;
+			height: 40px;
+			background: url(images/right.jpg) no-repeat;
+			float: left;
+			cursor: pointer;
+			outline-style: none;	/*取消获得焦点时的蓝色外边框*/
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var input = document.getElementById("_input");
+			input.onfocus = function(){
+				if(this.value == "请输入..."){
+					this.value = "";
+					this.style.color = "#000";
+				}
+			}
+			input.onblur = function(){
+				if(this.value == ""){
+					this.style.color = "rgb(128,128,128)";
+					this.value = "请输入...";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="_container">
+		<input type="text" value="请输入..." id="_input">
+		<button></button>
+	</div>
+</body>
+
+</html>

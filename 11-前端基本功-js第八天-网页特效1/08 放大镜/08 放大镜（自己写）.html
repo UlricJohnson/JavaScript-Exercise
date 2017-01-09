@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜（自己写）</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#_container{
+			width: 350px;
+			height: 350px;
+			margin: 100px;
+			border: 1px solid gray;
+			position: relative;
+			cursor: crosshair;
+		}
+		#_magnifier{
+			display: none;
+			width: 100px;
+			height: 100px;
+			background-color: rgba(255, 255, 0, 0.8);
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.6;
+		}
+		#_bigImgDiv{
+			display: none;
+			width: 450px;
+			height: 450px;
+			position: absolute;
+			border: 1px solid gray;
+			top: 0;
+			left: 360px;
+			overflow: hidden;
+		}
+		#_bigImgDiv img{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="_container">
+		<div id="_originalImgDiv">
+			<img src="images/001.jpg" alt="" style="display:block">
+			<div id="_magnifier"></div>
+		</div>
+		<div id="_bigImgDiv"><img src="images/0001.jpg" alt=""></div>
+	</div>
+</body>
+</html>
+<script>
+	var originalImgDiv = document.getElementById("_originalImgDiv");	//原图div
+	var magnifier = document.getElementById("_magnifier");		//放大镜div
+	var bigImgDiv = document.getElementById("_bigImgDiv");	//获取大图片div元素
+	
+	originalImgDiv.onmouseover = function(){
+		magnifier.style.display = "block";
+		bigImgDiv.style.display = "block";
+	}
+	originalImgDiv.onmouseout = function(){
+		magnifier.style.display = "none";
+		bigImgDiv.style.display = "none";
+
+	}
+	originalImgDiv.onmousemove = function(event){	//对放大镜小盒子进行移动操作
+		var event = event || window.Event;
+//		alert(this.offsetLeft);	//offsetLeft offsetTop 为到最近一个有定位属性的父级元素的距离值
+		
+		//鼠标在originalDiv中的坐标
+		var x = event.clientX - document.getElementById("_container").offsetLeft;	
+		var y = event.clientY - document.getElementById("_container").offsetTop;
+
+//		magnifier.style.top = y - magnifier.offsetHeight/2 + "px";
+//		magnifier.style.left = x - magnifier.offsetWidth/2 + "px";
+		
+		if(y <= 50){	//设置top值
+			magnifier.style.top = 0 + "px";
+		}else if(y >= 300){
+			magnifier.style.top = 250 + "px";
+		}else{
+			magnifier.style.top = y - magnifier.offsetHeight/2 + "px";
+		}
+		if(x <= 50){	//设置left值
+			magnifier.style.left = 0 + "px";
+		}else if(x >= 300){
+			magnifier.style.left = 250 + "px";
+		}else{
+			magnifier.style.left = x - magnifier.offsetWidth/2 + "px";
+		}
+		
+		//移动放大镜小盒子改变大图片position    16:7 为大图片和小图片的大小之比
+//		var smallImg = originalImgDiv.children[0];	//获取小图片img
+		var bigImg = bigImgDiv.getElementsByTagName("img")[0];	//获取大图片img
+		bigImg.style.top = -(magnifier.offsetTop * 1.5) + "px";	
+		bigImg.style.left = -(magnifier.offsetLeft * 1.5) + "px";
+	}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

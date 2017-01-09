@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日历（自己写）</title>
+	<style>
+		#_container{
+			width: 150px;
+			height: 200px;
+			margin: 100px;
+			background-color: #369;
+		}
+		p{
+			text-align: center;
+			padding: 30px 0;
+			color: #FFF;
+			font-size: 12px;
+		}
+		#_container span{
+			display: block;
+			width: 80px;
+			height: 80px;
+			margin: 0 auto;
+			background-color: #9ACD32;
+			font: 400 50px/80px "simsun";
+			text-align: center;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			//声明Date对象
+			var dateObj = new Date();
+			
+			//获取div
+			var container = document.getElementById("_container");
+			//获取年月日星期
+			var year = dateObj.getFullYear();
+			var month = dateObj.getMonth();
+			var date = dateObj.getDate();
+			var dayNum = dateObj.getDay();
+			var dayStr = "";
+			switch(dayNum){
+				case 0:
+					dayStr = "星期日";
+					break;
+				case 1:
+					dayStr = "星期一";
+					break;
+				case 2:
+					dayStr = "星期二";
+					break;
+				case 3:
+					dayStr = "星期三";
+					break;
+				case 4:
+					dayStr = "星期四";
+					break;
+				case 5:
+					dayStr = "星期五";
+					break;
+				case 6:
+					dayStr = "星期六";
+					break;
+				default:
+					break;
+			}
+			container.children[0].innerHTML = year + "年" + (month+1) + "月" + date + "日 " + dayStr;
+			container.children[1].innerHTML = date;	//container的第2个子节点即为日期
+		}
+	</script>
+</head>
+<body>
+	<div id="_container">
+<!--写死并把样式完成之后删掉
+		<p>2016/12/31 星期六</p>
+		<span>31</span>
+-->
+		<p></p>
+		<span></span>
+	</div>
+</body>
+</html>

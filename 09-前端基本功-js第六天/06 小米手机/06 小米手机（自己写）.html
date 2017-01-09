@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小米手机（自己写）</title>
+</head>
+	<style>
+		#_container{
+			width: 512px;
+			height: 400px;
+			margin: 150px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#_img{
+			position: absolute;
+			top: 0;
+		}
+		#_container span{
+			width: 100%;
+			height: 50%;
+			position: absolute;
+			left: 0;
+			cursor: pointer;
+		}
+		#_topSpan{
+			top: 0;
+		}
+		#_btmSpan{
+			bottom: 0;
+		}
+	</style>
+<body>
+	<div id="_container">
+		<img id="_img" src="mi.png" alt="">
+		<span id="_topSpan"></span>
+		<span id="_btmSpan"></span>
+	</div>
+</body>
+</html>
+<script>
+	var img = document.getElementById("_img");
+	var topSpan = document.getElementById("_topSpan");
+	var btmSpan = document.getElementById("_btmSpan");
+	var dist = 0;
+	var timer = null;	//承载定时器
+	topSpan.onmouseover = function(){
+		clearInterval(timer);
+		timer = setInterval(function(){
+//			clearInterval(timer);	//放错位置了
+			if(dist > -1070){	//图片底部还没露出来
+				dist -= 5;
+				img.style.top = dist + "px";	//切记不能忘记 px
+			}else{
+				clearInterval(timer);
+			}
+		},50);
+	}
+	btmSpan.onmouseover = function(){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			if(dist < 0){	//图片底部还没露出来
+				dist += 3;
+				img.style.top = dist + "px";	//切记不能忘记 px
+			}else{
+				clearInterval(timer);
+			}
+		},50);
+	}
+	document.getElementById("_container").onmouseout = function(){	
+		clearInterval(timer);	//离开图片区域时清除定时器
+	}
+</script>

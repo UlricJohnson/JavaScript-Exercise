@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>onmouseover换图片（自己写）</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#_container{
+			width: 360px;
+			height: 70px;
+			margin: 50px auto;
+			padding-top: 362px;
+			border: 1px solid rgb(204,204,204);
+			overflow: hidden;
+			background: url(images/01big.jpg) no-repeat;
+		}
+		ul{
+			border-top: 1px solid rgb(204,204,204);
+		}
+		li{
+			list-style: none;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div id="_container">
+		<ul>
+			<li id="_li1"><img src="images/01.jpg" alt=""></li>
+			<li id="_li2"><img src="images/02.jpg" alt=""></li>
+			<li id="_li3"><img src="images/03.jpg" alt=""></li>
+			<li id="_li4"><img src="images/04.jpg" alt=""></li>
+			<li id="_li5"><img src="images/05.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+	<script>
+		window.onload = function(){
+			var container = document.getElementById("_container");
+//			var lis = document.getElementsByTagName("li");
+//			var urlStr = "";
+//			for(var i = 0; i < lis.length; i++){
+//				lis[i].onmousemove = function(){
+//					urlStr = "url(images/0" + (i+1).toString() + "big.jpg)";
+//					container.style.backgroundImage = urlStr;
+//				}
+//			}
+			function fun(liId, urlStr){
+				var li = document.getElementById(liId);
+				li.onmouseover = function(){
+					container.style.backgroundImage = urlStr;
+				}
+			}
+			fun("_li1", "url(images/01big.jpg)");
+			fun("_li2", "url(images/02big.jpg)");
+			fun("_li3", "url(images/03big.jpg)");
+			fun("_li4", "url(images/04big.jpg)");
+			fun("_li5", "url(images/05big.jpg)");
+
+		}
+	</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			padding: 0;
+			padding: 0;
+		}
+		ul{ list-style-type: none;}
+		div.container{
+			width: 600px;
+			height: auto;
+			border: 1px solid black;
+			
+		}
+		.text_area{
+			resize: none;
+		}
+		ul#_ul li{
+			width: 440px;
+			margin: 10px 0 0 85px;
+			border-bottom: 1px dashed green;
+			line-height: 18px;
+		}
+		ul#_ul a{
+			float: right;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			//添加ul
+			var ulElm = document.createElement("ul");
+			ulElm.id = "_ul";
+			var containerDiv = document.getElementsByClassName("container")[0];	//获取container DIV
+			containerDiv.appendChild(ulElm);
+			
+			/* 只有一个元素也不能省 [0]，因为该方法获取到的是一个数组，不能直接使用 */
+			var btn = document.getElementsByTagName("button")[0];	//获取 button
+			
+			
+			var ul = document.getElementById("_ul");	//获取ul，上面已赋予id
+			btn.onclick = function(){
+				var textarea = document.getElementsByTagName("textarea")[0];	//获取 textarea
+				if(textarea.value == ""){
+//					textarea.value = "请输入内容！";
+					alert("请输入内容！");
+					return;	//不返回值，起终止函数作用
+				}else{
+					
+					var newLi = document.createElement("li");
+					newLi.innerHTML = textarea.value + "<a href='javascript:;'>删除</a>";
+					ul.insertBefore(newLi, ul.firstChild);
+					textarea.value = "";
+					
+				}
+				
+				var as = document.getElementsByTagName("a");
+				for(var i = 0; i < as.length; i++){
+					as[i].onclick = function(){
+						ul.removeChild(this.parentNode);
+					}
+				}
+			}
+			
+			var as = document.getElementsByTagName("a");
+			for(var i = 0; i < as.length; i++){
+				as[i].onclick = function(){
+					ul.removeChild(this.parentNode);	//node.removeChild(node)
+				}
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<span>
+			微博发布：
+		</span>
+		<textarea class="text_area" name="" id="" cols="60" rows="15"></textarea>
+		<button>发布</button>
+<!--
+		<ul id="_ul">
+			<li>relkn</li>
+			<li>dhtry</li>
+			<li>yulkgh</li>
+		</ul>
+-->
+	</div>
+	
+</body>
+</html>

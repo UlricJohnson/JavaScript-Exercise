@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5秒钟之后返回首页（自己写）</title>
+</head>
+<body>
+	<h3 id="_txt"></h3>
+</body>
+</html>
+<script>
+	var txt = document.getElementById("_txt");
+	var count = 5;
+	var intervals = 1000;	//间隔时间
+	setTimeout(toIndex,intervals);
+	function toIndex(){
+		if(count > 0){
+			txt.innerHTML = "本页面将在" + count + "秒后跳转到<a href='http://www.baidu.com'>百度首页</a>";
+			count--;
+			setTimeout(toIndex,intervals);
+		}else{
+			window.location.href = "http://www.baidu.com";
+		}
+	}
+</script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直滚动条（自己写）</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#_container{
+			width: 250px;
+			height: 400px;
+			border: 1px solid black;
+			margin: 100px;
+			position: relative;
+		}
+		#_content{
+			width: 230px;
+			height: auto;
+			position: absolute;
+			top: 0px;
+		}
+		#_scrollBar{
+			width: 20px;
+			height: 100%;
+			background-color: #f1f1f1;
+			position: absolute;
+			top: 0;
+			right: 0;
+			box-shadow: -2px 0 2px #ccc;
+		}
+		#_scroller{
+			width: 100%;
+			height: 50px;
+			background-color: red;
+			position: absolute;
+			top: 0;
+			right: 0;
+			cursor: pointer;
+			box-shadow: 0 2px 2px #000;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var container = document.getElementById("_container");	
+			var content = document.getElementById("_content");	
+			var scrollBar = document.getElementById("_scrollBar");
+			var scroller = document.getElementById("_scroller");
+			scroller.style.height = Math.pow(container.offsetHeight, 2) / content.offsetHeight + "px";	//计算scroller的长度 container.offsetHeight / content.offsetHeight = scroller.offsetHeight / scrollBar.offsetHeight
+			scroller.onmousedown = function(event){
+				var event = event || window.event;
+				var extra = event.clientY - this.offsetTop;	//在点击时就立即获得鼠标点击位置在scroller中的y坐标值 + container.offsetTop值(在拖动过程中不会变，到时直接用event.clientY减去这个值就行了)
+				var that = this;
+				document.onmousemove = function(event){
+					var event = event || window.event;
+					var scrlOffsT = event.clientY - extra;	//scroller的top值
+					
+					if(scrlOffsT <= 0){	//如果滚动条超出范围，则更改scrlOffsT的值
+						scrlOffsT = 0;
+					}else if(scrlOffsT >= scrollBar.offsetHeight - scroller.offsetHeight){
+						scrlOffsT = scrollBar.offsetHeight - scroller.offsetHeight;
+					}
+					
+					that.style.top = scrlOffsT + "px";	//设置scroller的top值
+					
+					//content的top值随scroller的top值的改变而改变
+					content.style.top = -scrlOffsT * ((content.offsetHeight - container.offsetHeight) / (scrollBar.offsetHeight - scroller.offsetHeight)) + "px";
+					
+					window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+				}
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="_container">
+		<div id="_content">
+			我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学习很有帮助。可能谈不上信手拈来的使用，至少对创造一些创意新颖的新技术拓宽了思路。jQuery为何受欢迎，其中原因之一就是方法名称比较短。好比打架一样，块头大的潜意识认为厉害，就不由得心生畏惧，退避三舍；小个子（或村妇，小孩）嘛，自然以为是软豆腐，愿意接受作为对手。我们都用过jQuery的CSS()方法，其底层运作就应用了getComputedStyle以及getPropertyValue方法。对于那些只想混口饭吃的人来讲，晓得CSS()如何使用就足够了。对于希望在JS道路上越走越远的来人说，简单了解一些JS库底层实现对自己的学
+		</div>
+		<div id="_scrollBar">
+			<div id="_scroller"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖动水平条（自己写）</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#_bar{
+			width: 400px;
+			height: 10px;
+			margin: 100px;
+			background-color: gainsboro;
+			position: relative;
+		}
+		#_drager{
+			width: 8px;
+			height: 20px;
+			background-color: blue;
+			position: absolute;
+			top: -5px;
+			left: 0;
+			cursor: pointer;
+		}
+		#_mask{
+			width: 0;
+			height: 10px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="_bar">
+		<div id="_drager"></div>
+		<div id="_mask"></div>
+	</div>
+	<div id="_text"></div>
+</body>
+</html>
+<script>
+	var bar = document.getElementById("_bar");
+	var drager = document.getElementById("_drager");
+	var mask = document.getElementById("_mask");
+ 	drager.onmousedown = function(event){		
+		var event = event || window.event;
+		var extra = event.clientX - this.offsetLeft;	//extra等于bar.offsetLeft + 鼠标坐标到drager左边框的距离的和
+		var that = this;
+		document.onmousemove = function(event){	//按下鼠标同时拖动时才触发事件
+			var event = event || window.event;
+			var dragerOffsetL = event.clientX - extra;	//drager在拖动条中的left数值
+			//设置drager的offsetLeft
+			if(dragerOffsetL <= 0){
+				that.style.left = 0 + "px";
+			}else if(dragerOffsetL >= 392){
+				that.style.left = 392 + "px";
+			}else{
+				that.style.left = dragerOffsetL + "px";
+			}
+			//设置mask的width
+			mask.style.width = that.style.left;
+			//计算水平条拖动的百分比
+//			alert(typeof(dragerOffsetL));
+			var percent = parseInt(parseInt(that.style.left) / (bar.offsetWidth - drager.offsetWidth) * 100);//怎么用Number()函数转化？
+			document.getElementById("_text").innerHTML = "音量：" + percent + "%"
+			
+			//让在拖动的时候text中的文字不会被选中
+			window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;	//取消onmousemove事件
+		}
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

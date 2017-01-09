@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时（自己写）</title>
+</head>
+<body>
+<!--	 2017新年倒计时 -->
+	<p id="_countDown"></p>
+	<script>
+		
+		var countDown = document.getElementById("_countDown");	//获取元素
+		var tarTime = new Date("2017/1/28 00:00:00");	//设置目标时间
+		
+		setInterval(function(){
+			var dateObj = new Date();
+			
+			// 相隔毫秒数 = 目标时间距离1970年毫秒数 - 当前时间距离1970年毫秒数 
+			var milliSeconds = tarTime.getTime() - dateObj.getTime();
+			var days = milliSeconds / (1000 * 60 * 60 * 24);	//换算成天数
+			var hours = (days - parseInt(days)) * 24;			//用天数算出小时数
+			var mins = (hours - parseInt(hours)) * 60;			//用小时数算出分钟数
+			var seconds = (mins - parseInt(mins)) * 60;			//用分钟数算出秒数
+			
+			countDown.innerHTML = "距离2017年春节还有" + parseInt(days) + "天" + parseInt(hours) + "小时" + parseInt(mins) + "分" + parseInt(seconds) + "秒";
+		},100);	//每0.1秒执行一次
+		
+	</script>
+</body>
+</html>

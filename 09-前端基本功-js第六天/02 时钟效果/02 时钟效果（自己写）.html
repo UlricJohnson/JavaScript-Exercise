@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟效果（自己写）</title>
+	<style>
+		#_clock{
+			width: 600px;
+			height: 600px;
+			margin: 50px;
+			background: url(images/clock.jpg) no-repeat;
+			position: relative;
+		}
+		#_clock div{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+		#_hour{
+			transform: rotate(100deg);
+/*			-ms-transform: rotate(100deg);*/
+			background: url(images/hour.png) no-repeat center center;
+		}
+		#_minute{
+			transform: rotate(40deg);
+/*			-ms-transform: rotate(40deg);*/
+			background: url(images/minute.png) no-repeat center center;
+		}
+		#_second{
+			transform: rotate(248deg);
+/*			-ms-transform: rotate(248deg);*/
+			background: url(images/second.png) no-repeat center center;
+		}
+	</style>
+</head>
+<body>
+	<div id="_clock">
+		<div id="_hour"></div>
+		<div id="_minute"></div>
+		<div id="_second"></div>
+	</div>
+</body>
+</html>
+
+<script>
+	//获取元素
+	var hourHand = document.getElementById("_hour");
+	var minuteHand = document.getElementById("_minute");
+	var secondHand = document.getElementById("_second");
+	
+//	var dateObj = new Date();
+	var h=0, min=0, s=0, ms=0;
+	setInterval(function(){
+		var dateObj = new Date();	//Date对象的声明不能放在定时函数外面
+		ms = dateObj.getMilliseconds();	//毫秒
+		s = dateObj.getSeconds() + (ms / 1000);	//秒
+		min = dateObj.getMinutes() + (s / 60);	//分
+		h = dateObj.getHours() + (min / 60);	//时
+//		console.log(ms);
+//		console.log(s);
+//		console.log(min);
+//		console.log(h);
+		
+		//时针走一个单位为30度，分针和秒针为6度
+		hourHand.style.transform = "rotate(" + (30 * h) + "deg)";
+		minuteHand.style.transform = "rotate(" + (6 * min) + "deg)";
+		secondHand.style.transform = "rotate(" + (6 * s) + "deg)";
+		
+		hourHand.style.MsTransform = "rotate(" + (30 * h) + "deg)";
+		minuteHand.style.MsTransform = "rotate(" + (6 * min) + "deg)";
+		secondHand.style.MsTransform = "rotate(" + (6 * s) + "deg)";
+		
+//		hourHand.style.WebkitTransform = "rotate(" + (30 * h) + "deg)";
+//		minuteHand.style.WebkitTransform = "rotate(" + (6 * min) + "deg)";
+//		secondHand.style.WebkitTransform = "rotate(" + (6 * s) + "deg)";
+	}, 50);
+	
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>验证表单（自己写）</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+/*			border: 0 none;*/
+		}
+		.container{
+			width: 400px;
+			margin: 100px auto;
+		}
+		#_textInput{
+			width: 150px;
+			height: 20px;
+			outline-color: green;
+		}
+		span{
+			display: inline-block;
+			width: 150px;
+			height: 20px;
+			margin-left: 10px;
+			border: 1px solid gray;
+			padding-left: 20px;
+			font: 400 12px/20px "SimSong";
+			color: gray;
+			background-color: gainsboro;
+			
+		}
+		.right{
+			color: #5EFF5E;
+			border: 1px solid #ACFFAC;
+			background: url(images/right.png) #DFFFDF no-repeat 4px 3px;
+		}
+		.wrong{
+			color: #FF6B39;
+			border: 1px solid #FFAC91;
+			background: url(images/wrong.png) no-repeat #FFDCD0 4px 3px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var textInput = document.getElementById("_textInput");
+			var result = document.getElementById("_result");
+			textInput.onblur = function(){
+				if(this.value == ""){	//输入为空
+					result.className = "wrong";
+					result.innerHTML = "内容不能为空！";
+				}else if(isNaN(this.value)){	//输入非数字
+					result.className = "wrong";
+					result.innerHTML = "请输入数字！";
+				}else if(this.value < 0 || this.value > 150){	//超范围
+					result.className = "wrong";
+					result.innerHTML = "请输入0-150之间的数字！";
+				}else{
+					result.className = "right";
+					result.innerHTML = "输入正确！";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		数学：
+		<input type="text" id="_textInput">
+		<span id="_result">请输入成绩</span>
+	</div>
+</body>
+</html>
