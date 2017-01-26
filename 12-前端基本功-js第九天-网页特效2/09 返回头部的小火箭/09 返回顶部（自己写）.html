@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>返回顶部（自己写）</title>
+	<style>
+		body {
+            width: 2000px;
+        }
+       .to_top{
+           position: fixed;
+           right:50px;
+           bottom:100px;
+           display: none;
+       }
+	</style>
+	<script>
+		window.onload = function(){
+			var toTop = document.getElementById("_toTop");
+			
+			var getScroll = function(){	//获取滚动的top或left值（兼容）
+				if(window.pageXOffset != null){		//不要写成if(window.pageXOffset)
+//					console.log("window.pageXOffsset")
+					return {
+						top : window.pageYOffset,
+						left : window.pageXOffset
+					}
+				}else if(document.compatMode && document.compatMode != 'BackCompat'){
+//					console.log("document.compatMode == CSS1Compat")
+					return{
+						top : document.documentElement.scrollTop,
+						left : document.documentElement.scrollLeft
+					}
+				}else if(document.body){
+//					console.log("document.body")
+					return {
+						top : document.body.scrollTop,
+						left : document.body.scrollLeft
+					}
+				}
+			}
+			
+			window.onscroll = function(){
+//				console.log(getScroll().top + " + " + getScroll().left)
+				if(getScroll().top > 0 || getScroll().left > 0){
+					toTop.style.display = "block";
+				}else if(getScroll().top <= 0 && getScroll().left <= 0){
+					toTop.style.display = "none";
+				}
+			}
+			
+			toTop.onclick = function(){
+				window.scrollTo(0,0);
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="_toTop" class="to_top">
+		<img src="images/Top.jpg" alt=""/>
+	</div>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+	<p>我是内容部分，有很多恩多很多</p>
+</body>
+</html>

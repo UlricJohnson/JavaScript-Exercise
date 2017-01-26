@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匀速动画封装函数（自己写）</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: aqua;
+			position: absolute;
+			top: 35px;
+			left: 0;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var btn250 = document.getElementById("_btn250");
+			var btn500 = document.getElementById("_btn500");
+			var div = document.getElementById("_div");
+			
+			btn250.onclick = function(){
+				animate(div, 250);
+			}
+			btn500.onclick = function(){
+				animate(div, 500);
+			}
+			
+			function animate(obj, target){
+				clearInterval(obj.timer);
+				var speed = obj.offsetLeft > target ? -3 : 3;	//定义速度（前进还是后退）
+				obj.timer = setInterval(function(){
+					obj.style.left = obj.offsetLeft + speed + "px";
+					if(Math.abs(target - obj.offsetLeft) <= 5){	//为何加上等于号bug就消失
+						obj.style.left = target + "px";
+						clearInterval(obj.timer);
+					}
+				}, 30);
+			}
+		}
+	</script>
+</head>
+<body>
+	<button id="_btn250">250</button>
+	<button id="_btn500">500</button>
+	<div id="_div"></div>
+</body>
+</html>
